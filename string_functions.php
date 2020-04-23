@@ -9,13 +9,13 @@
     
         $br = "<br>";
     
-        $string = "Ritalin is great.";
+        $string = "We're all mad here.";
     
         echo strlen($string);
     
         echo $br;
         
-        echo strtoupper("I love Matt Brooks.");
+        echo strtoupper("There is a fine line between courage and stupidity.");
     
         echo $br;
     
