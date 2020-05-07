@@ -1,16 +1,29 @@
+<?php include "db.php";
 
-<?php 
-include "db.php";
-include "utils.php"
-?>
+if(isset($_POST['submit'])) {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+    
+    
+    
 
-<?php 
-    if (isset($_POST['submit'])) {
-        updateUser();
-        
+    
+    if($connection) {
+        echo "New user created!";
+    } else {
+        die("Database connection failed");
     }
-?>
+  
+    $query = "INSERT INTO users(username, password)";
+    $query .= "VALUES ('$username', '$password')";
 
+    $result = mysqli_query($connection, $query);
+    
+    if (!$result){
+        die('QUERY FAILED!!!' . mysqli_error());
+    } 
+}
+?>
 
 
 <!DOCTYPE html>
@@ -24,7 +37,7 @@ include "utils.php"
     <div class="container">
         <div class="col-sm-6">
             <form
-                action="login_update.php"
+                action="login_create.php"
                 method="post"
                 style="padding-top:30px;"
             >
@@ -44,26 +57,14 @@ include "utils.php"
                         class="form-control"
                     >
                 </div>
-                <div class="form-group">
-                   <select name="id" id="">
-                   <?php 
-                    
-                        showAllData();
-                    
-                    ?>
-                   </select>
-                   
-
-                </div>
                 <input 
                     class="btn btn-primary"
                     type="submit" 
                     name="submit" 
-                    value="UPDATE">
+                    value="submit">
             </form>
-
-                
         </div>
     </div>
     
 </body>
+</html>

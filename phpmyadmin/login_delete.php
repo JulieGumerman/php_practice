@@ -1,29 +1,15 @@
-<?php
 
-if(isset($_POST['submit'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    
-    
-    
-    $connection = mysqli_connect('localhost', 'root', '', 'loginapp');
-    
-    if($connection) {
-        echo "We are all connected to each other";
-    } else {
-        die("Database connection failed");
-    }
-  
-    $query = "INSERT INTO users(username, password)";
-    $query .= "VALUES ('$username', '$password')";
-
-    $result = mysqli_query($connection, $query);
-    
-    if (!$result) {
-        die('QUERY FAILED!!!' . mysqli_error());
-    } 
-}
+<?php 
+include "db.php";
+include "utils.php"
 ?>
+
+<?php 
+    if (isset($_POST['submit'])) {
+        deleteUser();   
+    }
+?>
+
 
 
 <!DOCTYPE html>
@@ -37,7 +23,7 @@ if(isset($_POST['submit'])) {
     <div class="container">
         <div class="col-sm-6">
             <form
-                action="login-practice.php"
+                action="login_delete.php"
                 method="post"
                 style="padding-top:30px;"
             >
@@ -57,14 +43,26 @@ if(isset($_POST['submit'])) {
                         class="form-control"
                     >
                 </div>
+                <div class="form-group">
+                   <select name="id" id="">
+                   <?php 
+                    
+                        showAllData();
+                    
+                    ?>
+                   </select>
+                   
+
+                </div>
                 <input 
                     class="btn btn-primary"
                     type="submit" 
                     name="submit" 
-                    value="submit">
+                    value="DELETE">
             </form>
+
+                
         </div>
     </div>
     
 </body>
-</html>
