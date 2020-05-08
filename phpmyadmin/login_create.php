@@ -1,41 +1,21 @@
-<?php include "db.php";
+<?php 
+include "db.php";
+include "utils.php";
 
-if(isset($_POST['submit'])) {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-    
-    
-    
+createUser();
 
-    
-    if($connection) {
-        echo "New user created!";
-    } else {
-        die("Database connection failed");
-    }
-  
-    $query = "INSERT INTO users(username, password)";
-    $query .= "VALUES ('$username', '$password')";
 
-    $result = mysqli_query($connection, $query);
-    
-    if (!$result){
-        die('QUERY FAILED!!!' . mysqli_error());
-    } 
-}
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-</head>
-<body>
+<?php 
+include "includes/header.php";
+include "includes/footer.php";
+?>
+
     <div class="container">
         <div class="col-sm-6">
+        <h1 class="text-center">Create user</h1>
             <form
                 action="login_create.php"
                 method="post"
@@ -61,10 +41,8 @@ if(isset($_POST['submit'])) {
                     class="btn btn-primary"
                     type="submit" 
                     name="submit" 
-                    value="submit">
+                    value="CREATE">
             </form>
         </div>
     </div>
     
-</body>
-</html>
