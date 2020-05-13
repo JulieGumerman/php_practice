@@ -80,7 +80,8 @@ function createUser () {
 
 
 
-
+        $username = mysqli_real_escape_string($connection,$username);
+        $password = mysqli_real_escape_string($connection, $password);
 
         if($connection) {
             echo "New user created!";
