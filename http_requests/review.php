@@ -8,7 +8,9 @@
     $expiration = time() + (60*60*24*7);
     setcookie($name, $value, $expiration);
 
-    print_r($_GET);
+    if (isset($_GET['motto'])){
+        print_r($_GET);
+    }
 ?>
 
 
